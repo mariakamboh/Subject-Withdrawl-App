@@ -21,17 +21,23 @@ const Register = () => {
     .required("Password is required"),
 });
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      await API.post("/auth/register", values);
-      alert("Registered successfully! Now login.");
-      navigate("/login");
-    } catch (err) {
-      alert(err.response?.data?.message || "Registration failed");
-    } finally {
-      setSubmitting(false);
-    }
-  };
+ const handleSubmit = async (values, { setSubmitting }) => {
+  console.log("Trying to register:", values); // 👈 add this
+
+  try {
+    const res = await API.post("/auth/register", values);
+    console.log("Success:", res.data); // 👈 add this
+    alert("Registered successfully! Now login.");
+    navigate("/login");
+  } catch (err) {
+    console.error("Error:", err); // 👈 full error
+    alert(err.response?.data?.message || "Registration failed");
+  } finally {
+    setSubmitting(false);
+  }
+};
+
+  
 
   return (
     <div className="auth-container">

@@ -1,9 +1,9 @@
-// src/services/api.js
-import axios from 'axios';
+import axios from "axios";
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api', // Update if needed
+  baseURL: "http://localhost:5000/api",  // ✅ Must match
 });
+
 
 // Attach token for auth-protected routes
 API.interceptors.request.use((config) => {
