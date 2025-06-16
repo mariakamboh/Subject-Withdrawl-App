@@ -20,6 +20,7 @@ const Login = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const res = await API.post("/auth/login", values);
+      localStorage.setItem("user", JSON.stringify(res.data.user)); 
       login(res.data);
       navigate("/dashboard");
     } catch (err) {
