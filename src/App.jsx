@@ -8,6 +8,8 @@ import AdminPanel from "./pages/AdminPanel";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Withdraw from "./pages/Withdraw";
+import MyRequests from "./pages/MyRequests";
+
 function App() {
   return (
     <Router>
@@ -27,13 +29,23 @@ function App() {
             <Withdraw />
           </ProtectedRoute>
       }
-/>
+      />
+      <Route path="/request" element={
+          <ProtectedRoute>
+            <RequestForm />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/my-requests" element={
+          <ProtectedRoute>
+            <MyRequests />
+          </ProtectedRoute>
+        } />
 
       </Routes>
     </Router>
   );
 }
-
 
 export default App;
 

@@ -11,6 +11,10 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+const requestRoutes = require('./routes/requestRoutes');
+
+app.use('/api/requests', requestRoutes);
+
 
 // ✅ Make sure only ONE listen call is used
 mongoose.connect(process.env.MONGO_URI)
