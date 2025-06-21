@@ -3,10 +3,8 @@ import { useState } from 'react';
 import API from '../services/api';
 
 const RequestForm = () => {
-  const [form, setForm] = useState({
-    subjectName: '',
-    reason: ''
-  });
+  const [form, setForm] = useState({ subject: '', reason: '' });
+
 
   const handleChange = (e) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -15,11 +13,11 @@ const RequestForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.post('/withdrawals', form);
+      await API.post('/requests', form); // ✅ Correct route
       alert('Request submitted successfully');
       setForm({ subjectName: '', reason: '' });
     } catch (err) {
-      alert('Failed to submit request');
+      alert(err.response?.data?.message || 'Failed to submit request');
     }
   };
 

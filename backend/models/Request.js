@@ -11,7 +11,7 @@ const requestSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    default: 'Pending',
+    default: 'Pending', // You can later allow admin to update this
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

@@ -1,17 +1,22 @@
 import axios from "axios";
 
-// Create the axios instance and export it
+// Create the axios instance
 const API = axios.create({
-  baseURL: "http://127.0.0.1:5000/api", // ✅ use 127.0.0.1 instead of localhost
+  baseURL: "http://127.0.0.1:5000/api", // ✅ working with your backend
 });
 
-// Attach token for auth-protected routes
-API.interceptors.request.use((config) => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (user?.token) {
-    config.headers.Authorization = `Bearer ${user.token}`;
+// Attach token automatically for all protected routes
+API.interceptors.request.use(
+  (config) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user?.token) {
+      config.headers.Authorization = `Bearer ${user.token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error); // 🛠️ Catch interceptor errors
   }
-  return config;
-});
+);
 
 export default API;
