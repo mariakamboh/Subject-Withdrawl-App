@@ -36,7 +36,7 @@ npm install
 node server.cjs
 
 ## Frontend
-cd subject-withdrawl-client
+cd subject-withdrawl-app
 npm install
 npm run dev
 
