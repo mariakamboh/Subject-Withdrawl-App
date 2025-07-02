@@ -36,9 +36,6 @@ const Register = () => {
     setSubmitting(false);
   }
 };
-
-  
-
   return (
     <div className="auth-container">
       <div className="auth-card">

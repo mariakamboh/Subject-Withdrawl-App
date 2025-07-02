@@ -12,6 +12,9 @@ const registerUser = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
+    if (email === 'mariakamboh@gmail.com') {
+      return res.status(403).json({ message: 'This email is reserved for admin only' });
+    }
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -21,10 +24,10 @@ const registerUser = async (req, res) => {
     await newUser.save();
 
     res.status(201).json({ message: 'User registered successfully' });
-  } catch (err) {
-    console.error("Registration Error:", err.message);
-    res.status(500).json({ message: 'Server error' });
-  }
+  }  catch (err) {
+  console.error("❌ Registration Error:", err); // Log full error, not just message
+  res.status(500).json({ message: 'Server error', error: err.message });
+}
 };
 
 // LOGIN USER

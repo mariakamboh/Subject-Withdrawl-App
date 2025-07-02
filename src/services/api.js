@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create the axios instance
 const API = axios.create({
-  baseURL: "http://127.0.0.1:5000/api", // ✅ working with your backend
+  baseURL: "http://127.0.0.1:5000/api", 
 });
 
 // Attach token automatically for all protected routes

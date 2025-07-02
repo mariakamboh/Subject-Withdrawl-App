@@ -1,8 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { submitWithdrawalRequest } = require('../controllers/withdrawalController');
-const { authenticateUser } = require('../middleware/authMiddleware');
+const {
+  getPendingRequests,
+  updateRequestStatus
+} = require('../controllers/withdrawalController');
 
-router.post('/', authenticateUser, submitWithdrawalRequest);
+const {
+  authenticateUser,
+  adminOnly
+} = require('../middleware/authMiddleware');
+
+router.get('/pending', authenticateUser, adminOnly, getPendingRequests);
+router.patch('/:id', authenticateUser, adminOnly, updateRequestStatus);
 
 module.exports = router;

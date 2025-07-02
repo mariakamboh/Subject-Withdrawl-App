@@ -17,18 +17,42 @@ const Login = () => {
     password: Yup.string().min(6, "Minimum 6 characters").required("Password is required"),
   });
 
+  // const handleSubmit = async (values, { setSubmitting }) => {
+  //   try {
+  //     const res = await API.post("/auth/login", values);
+  //     localStorage.setItem("user", JSON.stringify(res.data.user)); 
+  //     login(res.data);
+  //     navigate("/dashboard");
+  //   } catch (err) {
+  //     alert(err.response?.data?.message || "Login failed");
+  //   } finally {
+  //     setSubmitting(false);
+  //   }
+  // };
+
   const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      const res = await API.post("/auth/login", values);
-      localStorage.setItem("user", JSON.stringify(res.data.user)); 
-      login(res.data);
+  try {
+    const res = await API.post("/auth/login", values);
+    const user = res.data.user;
+
+    // Save user in localStorage
+    localStorage.setItem("user", JSON.stringify(user)); 
+
+    // Call login context method
+    login(res.data);
+
+    // Redirect based on email
+    if (user.email === "mariakamboh@gmail.com") {
+      navigate("/admin");
+    } else {
       navigate("/dashboard");
-    } catch (err) {
-      alert(err.response?.data?.message || "Login failed");
-    } finally {
-      setSubmitting(false);
     }
-  };
+  } catch (err) {
+    alert(err.response?.data?.message || "Login failed");
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   return (
     <div className="auth-container">

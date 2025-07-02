@@ -15,33 +15,15 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-  
+        <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-         <Route path="/dashboard" element={<Dashboard />} />
-
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/withdraw" element={<ProtectedRoute><RequestForm /></ProtectedRoute>} />
-        
         <Route path="/admin" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>} />
-        <Route path="/withdraw" 
-        element={
-          <ProtectedRoute>
-            <Withdraw />
-          </ProtectedRoute>
-      }
-      />
-      <Route path="/request" element={
-          <ProtectedRoute>
-            <RequestForm />
-          </ProtectedRoute>
-        } />
-
-        <Route path="/my-requests" element={
-          <ProtectedRoute>
-            <MyRequests />
-          </ProtectedRoute>
-        } />
-
+        <Route path="/withdraw" element={<ProtectedRoute><Withdraw /></ProtectedRoute>}/>
+        <Route path="/request" element={<ProtectedRoute><RequestForm /></ProtectedRoute>} />
+        <Route path="/my-requests" element={<ProtectedRoute><MyRequests /></ProtectedRoute>} />
       </Routes>
     </Router>
   );

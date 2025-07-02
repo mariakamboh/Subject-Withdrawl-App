@@ -7,6 +7,9 @@
   letter-spacing: 0.5px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.navbar-logo:hover{
+  text-decoration: none;
+}
 
 .navbar {
   display: flex;
@@ -15,7 +18,7 @@
   background-color: #1e3a8a;
   padding: 1rem 2rem;
   color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 
@@ -32,11 +35,11 @@
   font-size: 1rem;
   padding: 0.4rem 0.8rem;
   border-radius: 6px;
-  transition: background-color 0.2s ease;
 }
 
 .navbar-link:hover {
   background-color: #3b82f6;
+  text-decoration: none;
 }
 
 .navbar-logout {
